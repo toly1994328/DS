@@ -1,32 +1,34 @@
 package 线性结构.队列;
 
+import base.IQueue;
+
 /**
  * 作者：张风捷特烈
  * 时间：2018/8/17 0017:22:50
  * 邮箱：1981462002@qq.com
  * 说明：
  */
-public class LinkedQueue<E> implements Queue<E> {
+public class LinkedIQueue<E> implements IQueue<E> {
 
     private Node head, tail;
     private int size;
 
-    public LinkedQueue(){
+    public LinkedIQueue(){
         head = null;
         tail = null;
         size = 0;
     }
 
     @Override
-    public void enqueue(E e) {
+    public void enqueue(E el) {
         // 如果队尾为空，说明队列是空的。因为tail一直指向最后一个非空节点。
         if(tail == null){
-            tail = new Node(e);
+            tail = new Node(el);
             head = tail;
         }
         else{
             // 使用tail.next把新Node挂载上来。
-            tail.next = new Node(e);
+            tail.next = new Node(el);
             // tail后挪
             tail = tail.next;
         }
@@ -50,7 +52,7 @@ public class LinkedQueue<E> implements Queue<E> {
     @Override
     public E getFront() {
         if(isEmpty())
-            throw new IllegalArgumentException("Queue is empty.");
+            throw new IllegalArgumentException("IQueue is empty.");
         return head.e;
     }
 
@@ -67,7 +69,7 @@ public class LinkedQueue<E> implements Queue<E> {
     @Override
     public String toString(){
         StringBuilder res = new StringBuilder();
-        res.append("Queue: front ");
+        res.append("IQueue: front ");
 
         Node cur = head;
         while(cur != null) {

@@ -1,7 +1,7 @@
-package 线性结构.栈;
+package 线性结构.栈.use;
 
 
-import 线性结构.数组.Array;
+import 线性结构.数组.ArrayGroup;
 
 import java.util.Stack;
 
@@ -14,10 +14,14 @@ import java.util.Stack;
 public class DoubleJudge {
     public static boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
-        String[] leftChars = new String[]{"(", "{", "[", "$"};
-        String[] rightChars = new String[]{")", "}", "]", "￥"};
-        Array<String> leftArr = new Array<>(leftChars);
-        Array<String> rightArr = new Array<>(rightChars);
+
+        String[] leftChars = new String[]{"(", "{", "["};
+        String[] rightChars = new String[]{")", "}", "]"};
+        //左侧字符
+        ArrayGroup<String> leftArr = new ArrayGroup<>(leftChars);
+        //右侧字符
+        ArrayGroup<String> rightArr = new ArrayGroup<>(rightChars);
+
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i); // String中的第i个字符
             if (leftArr.contains(String.valueOf(c))) {
@@ -33,7 +37,7 @@ public class DoubleJudge {
     }
 
     public static void main(String[] args) {
-        boolean valid = DoubleJudge.isValid("{[[{]}{$}]dser()1{￥}}");
+        boolean valid = DoubleJudge.isValid("{[{yy]}{$}]user()1{￥}");
         System.out.println(valid);
     }
 }

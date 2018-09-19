@@ -1,6 +1,7 @@
 package 线性结构.栈;
 
 
+import base.IStack;
 import 线性结构.链表.Linked;
 
 /**
@@ -9,7 +10,7 @@ import 线性结构.链表.Linked;
  * 邮箱：1981462002@qq.com
  * 说明：
  */
-public class LinkedStack<E> implements Stack<E> {
+public class LinkedStack<E> implements IStack<E> {
 
 
     private Linked<E> link;
@@ -20,12 +21,12 @@ public class LinkedStack<E> implements Stack<E> {
 
 
     @Override
-    public int getSize() {
+    public int size() {
         return link.getSize();
     }
 
     @Override
-    public int getCapacity() {
+    public int capacity() {
         return link.getSize();
     }
 
@@ -35,8 +36,8 @@ public class LinkedStack<E> implements Stack<E> {
     }
 
     @Override
-    public void push(E e) {
-        link.addFirst(e);
+    public void push(E el) {
+        link.addFirst(el);
     }
 
     @Override

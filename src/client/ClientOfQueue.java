@@ -1,4 +1,9 @@
-package 线性结构.队列;
+package client;
+
+import base.IQueue;
+import 线性结构.队列.ArrayGroupQueue;
+import 线性结构.队列.ArrayLoopQueue;
+import 线性结构.队列.LinkedIQueue;
 
 import java.util.Random;
 
@@ -8,33 +13,33 @@ import java.util.Random;
  * 邮箱：1981462002@qq.com
  * 说明：
  */
-public class Client {
+public class ClientOfQueue {
     public static void main(String[] args) {
-//        baseQueueTest();
+        arrayQueueTest();
 //        LoopQueueTest();
 //        linkedQueueTest();
-        abilityTest();
+//        abilityTest();
 
 
     }
 
     private static void abilityTest() {
         int opCount = 150000;
-        ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
+        ArrayGroupQueue<Integer> arrayQueue = new ArrayGroupQueue<>();
 //        double time1 = testQueue(arrayQueue, opCount);
 //        System.out.println("ArrayQueue出队入队"+opCount+"次的时间: "+time1+"秒");
-        LoopQueue<Integer> loopQueue = new LoopQueue<>();
+        ArrayLoopQueue<Integer> loopQueue = new ArrayLoopQueue<>();
         double time2 = testQueue(loopQueue, opCount);
         System.out.println("loopQueue出队入队"+opCount+"次的时间: "+time2+"秒");
 
-        LinkedQueue<Integer> linkedQueue = new LinkedQueue<>();
+        LinkedIQueue<Integer> linkedQueue = new LinkedIQueue<>();
         double time3 = testQueue(linkedQueue, opCount);
         System.out.println("linkedQueue出队入队" +opCount+"次的时间: "+ time3 + " 秒");
 
     }
 
     private static void linkedQueueTest() {
-        LinkedQueue<Integer> queue = new LinkedQueue<>();
+        LinkedIQueue<Integer> queue = new LinkedIQueue<>();
         for (int i = 0; i < 5; i++) {
             queue.enqueue(i);
 //            System.out.println(queue);
@@ -49,7 +54,7 @@ public class Client {
     }
 
     private static void LoopQueueTest() {
-        LoopQueue<Integer> queue = new LoopQueue<>();
+        ArrayLoopQueue<Integer> queue = new ArrayLoopQueue<>();
         for (int i = 0; i < 5; i++) {
             queue.enqueue(i);
             System.out.println(queue);
@@ -60,17 +65,26 @@ public class Client {
         }
     }
 
-    private static void baseQueueTest() {
-        ArrayQueue<Integer> queue = new ArrayQueue<>();
+    /**
+     * 数组队列测试
+     */
+    private static void arrayQueueTest() {
+        ArrayGroupQueue<Integer> queue = new ArrayGroupQueue<>();
         for (int i = 0; i < 5; i++) {
             queue.enqueue(i);
             System.out.println(queue);
         }
         queue.dequeue();
         System.out.println(queue);
+        //IQueue ：front [ 0] tail
+        //IQueue ：front [ 0, 1] tail
+        //IQueue ：front [ 0, 1, 2] tail
+        //IQueue ：front [ 0, 1, 2, 3] tail
+        //IQueue ：front [ 0, 1, 2, 3, 4] tail
+        //IQueue ：front [ 1, 2, 3, 4] tail
     }
 
-    private static double testQueue(Queue<Integer> q,int opCount){
+    private static double testQueue(IQueue<Integer> q, int opCount){
         long startTime = System.nanoTime();
         Random random = new Random();
 

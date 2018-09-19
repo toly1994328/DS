@@ -1,12 +1,17 @@
 package 线性结构.链表;
 
+import base.Group;
+
+import java.util.List;
+
 /**
  * 作者：张风捷特烈
- * 时间：2018/9/18 0018:7:35
+ * 时间：2018/9/19 0019:8:34
  * 邮箱：1981462002@qq.com
- * 说明：双链表
+ * 说明：
  */
-public class DoubleLinkList<T> {
+public class DoubleLinkedGroup<T> extends Group<T> {
+
     /**
      * 虚拟头结点
      */
@@ -15,90 +20,48 @@ public class DoubleLinkList<T> {
      * 虚拟尾节点
      */
     private Node tailNode;
-    /**
-     * 链表长度(节点数)
-     */
-    private int size;
 
-    public DoubleLinkList() {
-        clear();//构造时生成头尾虚拟节点
+    public DoubleLinkedGroup() {
+        clear();
     }
 
-    /**
-     * 元素添加操作--插入尾部
-     *
-     * @param data 数据元素
-     */
-    public void add(T data) {
-        add(size, data);
+    @Override
+    public void add(int index, T el) {
+        addNodeBefore(getNode(index), el);
     }
 
-    /**
-     * 元素添加操作
-     *
-     * @param index 索引
-     * @param data  数据元素
-     */
-    public void add(int index, T data) {
-        addNodeBefore(getNode(index), data);
-    }
-
-    /**
-     * 根据索引移除元素
-     *
-     * @param index 索引
-     */
+    @Override
     public T remove(int index) {
         return removeNode(getNode(index));
     }
 
-    /**
-     * 根据索引设置节点新数据
-     *
-     * @param index 索引
-     * @param data  新数据
-     * @return 旧数据
-     */
-    public T set(int index, T data) {
-        Node<T> node = getNode(index);
-        T oldData = node.data;
-        node.data = data;
-        return oldData;
-    }
 
-    /**
-     * 根据索引获取数据
-     *
-     * @param index 索引
-     * @return 数据
-     */
-    public T get(int index) {
-        return getNode(index).data;
-    }
-
-    /**
-     * 清除元素
-     */
+    @Override
     public void clear() {
         clearNode();
     }
 
-    /**
-     * 集合是否为空
-     *
-     * @return 集合
-     */
-    public boolean isEmpty() {
-        return size == 0;
+    @Override
+    public T set(int index, T el) {
+        Node<T> node = getNode(index);
+        T oldData = node.data;
+        node.data = el;
+        return oldData;
     }
 
-    /**
-     * 获取集合大小
-     *
-     * @return 集合大小
-     */
-    public int size() {
-        return size;
+    @Override
+    public T get(int index) {
+        return getNode(index).data;
+    }
+
+    @Override
+    public int[] getIndex(T el) {
+        return null;
+    }
+
+    @Override
+    public Group<T> contact(int index, Group<T> group) {
+        return null;
     }
 
     /////////////////////////////节点操作//////////////////////////

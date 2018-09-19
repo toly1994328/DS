@@ -1,4 +1,8 @@
-package 线性结构.栈;
+package client;
+
+import base.IStack;
+import 线性结构.栈.ArrayGroupStack;
+import 线性结构.栈.LinkedStack;
 
 import java.util.Random;
 
@@ -8,21 +12,25 @@ import java.util.Random;
  * 邮箱：1981462002@qq.com
  * 说明：
  */
-public class Client {
+public class ClientOfTask {
     public static void main(String[] args) {
-//        arrayStackTest();
+        arrayStackTest();
 //        linkStackTest();
 
+//        timeTest();
+
+    }
+
+    private static void timeTest() {
         int opCount = 10000000;
 
-        ArrayStack<Integer> arrayStack = new ArrayStack<>();
-        double time1 = testStack(arrayStack, opCount);
-        System.out.println("ArrayStack, time: " + time1 + " s");
+        ArrayGroupStack<Integer> arrayGroupStack = new ArrayGroupStack<>();
+        double time1 = testStack(arrayGroupStack, opCount);
+        System.out.println("ArrayGroupStack, time: " + time1 + " s");
 
         LinkedStack<Integer> linkedListStack = new LinkedStack<>();
         double time2 = testStack(linkedListStack, opCount);
         System.out.println("LinkedStack, time: " + time2 + " s");
-
     }
 
     private static void linkStackTest() {
@@ -38,20 +46,26 @@ public class Client {
     }
 
     private static void arrayStackTest() {
-        ArrayStack<Integer> arrayStack = new ArrayStack<>();
+        ArrayGroupStack<Integer> arrayGroupStack = new ArrayGroupStack<>();
         for (int i = 0; i < 5; i++) {
-            arrayStack.push(i);
-            System.out.println(arrayStack);
+            arrayGroupStack.push(i);
+            System.out.println(arrayGroupStack);
         }
-        arrayStack.pop();
-        arrayStack.pop();
-        Integer peek = arrayStack.peek();
+        arrayGroupStack.pop();
+        arrayGroupStack.pop();
+        Integer peek = arrayGroupStack.peek();
         System.out.println(peek);
+        //Stack ：[ 0] <--top
+        //Stack ：[ 0, 1] <--top
+        //Stack ：[ 0, 1, 2] <--top
+        //Stack ：[ 0, 1, 2, 3] <--top
+        //Stack ：[ 0, 1, 2, 3, 4] <--top
+        //2
     }
 
 
     // 测试使用stack运行opCount个push和pop操作所需要的时间，单位：秒
-    private static double testStack(Stack<Integer> stack, int opCount){
+    private static double testStack(IStack<Integer> stack, int opCount){
 
         long startTime = System.nanoTime();
 
