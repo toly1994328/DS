@@ -1,11 +1,9 @@
 package client;
 
-import base.IQueue;
+import Jutils.TimeTest;
 import 线性结构.队列.ArrayGroupQueue;
 import 线性结构.队列.ArrayLoopQueue;
-import 线性结构.队列.LinkedIQueue;
-
-import java.util.Random;
+import 线性结构.队列.SingleLinkedQueue;
 
 /**
  * 作者：张风捷特烈
@@ -15,54 +13,135 @@ import java.util.Random;
  */
 public class ClientOfQueue {
     public static void main(String[] args) {
-        arrayQueueTest();
+//        arrayQueueTest();
 //        LoopQueueTest();
 //        linkedQueueTest();
-//        abilityTest();
+        int opCount = 10000000;
+
+//        数组普通队列入队测试(opCount);
+//        数组循环队列入队测试(opCount);
+        链表队列入队测试(opCount);
+
+//        数组循环队列出队测试(opCount);
+//        数组普通队列出队测试(opCount);
+        链表队列出队测试(opCount);
 
 
     }
 
-    private static void abilityTest() {
-        int opCount = 150000;
-        ArrayGroupQueue<Integer> arrayQueue = new ArrayGroupQueue<>();
-//        double time1 = testQueue(arrayQueue, opCount);
-//        System.out.println("ArrayQueue出队入队"+opCount+"次的时间: "+time1+"秒");
-        ArrayLoopQueue<Integer> loopQueue = new ArrayLoopQueue<>();
-        double time2 = testQueue(loopQueue, opCount);
-        System.out.println("loopQueue出队入队"+opCount+"次的时间: "+time2+"秒");
+    private static void 数组普通队列出队测试(int opCount) {
+        ArrayGroupQueue<Integer> arrayGroupQueue = new ArrayGroupQueue<>();
 
-        LinkedIQueue<Integer> linkedQueue = new LinkedIQueue<>();
-        double time3 = testQueue(linkedQueue, opCount);
-        System.out.println("linkedQueue出队入队" +opCount+"次的时间: "+ time3 + " 秒");
-
-    }
-
-    private static void linkedQueueTest() {
-        LinkedIQueue<Integer> queue = new LinkedIQueue<>();
-        for (int i = 0; i < 5; i++) {
-            queue.enqueue(i);
-//            System.out.println(queue);
-//            if(i %3 == 2){
-//                queue.dequeue();
-//                System.out.println(queue);
-//            }
+        for (int i = 0; i < opCount; i++) {
+            arrayGroupQueue.enqueue(1);
         }
-//        queue.dequeue();
-//        queue.dequeue();
-        System.out.println(queue);
-    }
 
-    private static void LoopQueueTest() {
-        ArrayLoopQueue<Integer> queue = new ArrayLoopQueue<>();
-        for (int i = 0; i < 5; i++) {
-            queue.enqueue(i);
-            System.out.println(queue);
-            if(i %3 == 2){
-                queue.dequeue();
-                System.out.println(queue);
+        new TimeTest("arrayGroupQueue出队", opCount) {
+            @Override
+            protected void run() {
+                arrayGroupQueue.dequeue();
             }
+        };
+    }
+
+    private static void 数组循环队列出队测试(int opCount) {
+        ArrayLoopQueue<Integer> arrayLoopQueue = new ArrayLoopQueue<>();
+
+        for (int i = 0; i < opCount; i++) {
+            arrayLoopQueue.enqueue(1);
         }
+        new TimeTest("arrayGroupQueue出队", opCount) {
+            @Override
+            protected void run() {
+                arrayLoopQueue.dequeue();
+            }
+        };
+    }
+
+    private static void 链表队列出队测试(int opCount) {
+        SingleLinkedQueue<Integer> linkedQueue = new SingleLinkedQueue<>();
+
+        for (int i = 0; i < opCount; i++) {
+            linkedQueue.enqueue(1);
+        }
+        new TimeTest("链表队列出队测试", opCount) {
+            @Override
+            protected void run() {
+                linkedQueue.dequeue();
+            }
+        };
+    }
+
+    private static void 数组普通队列入队测试(int opCount) {
+        ArrayGroupQueue<Integer> arrayGroupQueue = new ArrayGroupQueue<>();
+        new TimeTest("arrayGroupQueue入队", opCount) {
+            @Override
+            protected void run() {
+                arrayGroupQueue.enqueue(1);
+            }
+        };
+    }
+
+    private static void 数组循环队列入队测试(int opCount) {
+        ArrayLoopQueue<Integer> loopQueue = new ArrayLoopQueue<>();
+        new TimeTest("loopQueue入队", opCount) {
+            @Override
+            protected void run() {
+                loopQueue.enqueue(1);
+            }
+        };
+    }
+
+    private static void 链表队列入队测试(int opCount) {
+        SingleLinkedQueue<Integer> linkedQueue = new SingleLinkedQueue<>();
+        new TimeTest("链表队列入队测试", opCount) {
+            @Override
+            protected void run() {
+                linkedQueue.enqueue(1);
+            }
+        };
+    }
+
+    /**
+     * 链表队列测试
+     */
+    private static void linkedQueueTest() {
+        SingleLinkedQueue<Integer> queue = new SingleLinkedQueue<>();
+        for (int i = 0; i < 8; i++) {
+            queue.enqueue(i);
+        }
+        System.out.println(queue);
+        //IQueue: front 0->1->2->3->4->5->6->7->NULL tail
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.enqueue(10);
+        System.out.println(queue.getFront());//4
+        System.out.println(queue);
+        //IQueue: front 4->5->6->7->10->NULL tail
+    }
+
+    /**
+     * 循环队列测试
+     */
+    private static void LoopQueueTest() {
+        ArrayLoopQueue<Integer> queue = new ArrayLoopQueue<>(8);
+        for (int i = 0; i < 8; i++) {
+            queue.enqueue(i);
+        }
+        System.out.println(queue);
+        //ArrayLoopQueue: size = 8, capacity = 8
+        //front [0, 1, 2, 3, 4, 5, 6, 7] tail
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.enqueue(10);
+        System.out.println(queue.getFront());//4
+        System.out.println(queue);
+        //ArrayLoopQueue: size = 5, capacity = 8
+        //front [4, 5, 6, 7, 10] tail
     }
 
     /**
@@ -83,22 +162,6 @@ public class ClientOfQueue {
         //IQueue ：front [ 0, 1, 2, 3, 4] tail
         //IQueue ：front [ 1, 2, 3, 4] tail
     }
-
-    private static double testQueue(IQueue<Integer> q, int opCount){
-        long startTime = System.nanoTime();
-        Random random = new Random();
-
-        for (int i = 0; i < opCount; i++) {
-            q.enqueue(random.nextInt(Integer.MAX_VALUE)); // 生成从0到int最大值
-        }
-        for (int i = 0; i < opCount; i++) {
-            q.dequeue();
-        }
-        long endTime = System.nanoTime(); // 纳秒
-        return (endTime - startTime)/ 1e9;
-    }
-
-
 }
 
 

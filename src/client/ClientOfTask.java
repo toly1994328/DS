@@ -1,8 +1,9 @@
 package client;
 
+import Jutils.TimeTest;
 import base.IStack;
 import 线性结构.栈.ArrayGroupStack;
-import 线性结构.栈.LinkedStack;
+import 线性结构.栈.SingleLinkedStack;
 
 import java.util.Random;
 
@@ -14,37 +15,101 @@ import java.util.Random;
  */
 public class ClientOfTask {
     public static void main(String[] args) {
-        arrayStackTest();
+//        arrayStackTest();
 //        linkStackTest();
 
 //        timeTest();
 
+        int opCount = 10000000;
+//        数组栈添加(opCount);
+//        链表栈添加(opCount);
+        数组栈出栈(opCount);
+        链表栈出栈(opCount);
+    }
+
+    private static void 链表栈添加(int opCount) {
+        SingleLinkedStack<Integer> linkedStack = new SingleLinkedStack<>();
+        new TimeTest("链表栈添加", opCount){
+            @Override
+            protected void run() {
+                linkedStack.push(1);
+            }
+        };
+    }
+
+    private static void 链表栈出栈(int opCount) {
+        SingleLinkedStack<Integer> linkedStack = new SingleLinkedStack<>();
+        for (int i = 0; i < opCount; i++) {
+            linkedStack.push(1);
+        }
+
+        new TimeTest("链表栈出栈", opCount){
+            @Override
+            protected void run() {
+                linkedStack.pop();
+            }
+        };
+    }
+
+    private static void 数组栈添加(int opCount) {
+
+        ArrayGroupStack<Integer> arrayGroupStack = new ArrayGroupStack<>();
+        new TimeTest("数组栈添加", opCount) {
+            @Override
+            protected void run() {
+                arrayGroupStack.push(1);
+            }
+        };
+    }
+    private static void 数组栈出栈(int opCount) {
+        ArrayGroupStack<Integer> arrayGroupStack = new ArrayGroupStack<>();
+        for (int i = 0; i < opCount; i++) {
+            arrayGroupStack.push(1);
+        }
+        new TimeTest("数组栈添加", opCount) {
+            @Override
+            protected void run() {
+                arrayGroupStack.pop();
+            }
+        };
     }
 
     private static void timeTest() {
-        int opCount = 10000000;
+        int opCount = 1000000;
 
         ArrayGroupStack<Integer> arrayGroupStack = new ArrayGroupStack<>();
         double time1 = testStack(arrayGroupStack, opCount);
         System.out.println("ArrayGroupStack, time: " + time1 + " s");
 
-        LinkedStack<Integer> linkedListStack = new LinkedStack<>();
+        SingleLinkedStack<Integer> linkedListStack = new SingleLinkedStack<>();
         double time2 = testStack(linkedListStack, opCount);
-        System.out.println("LinkedStack, time: " + time2 + " s");
+        System.out.println("SingleLinkedStack, time: " + time2 + " s");
     }
 
+    /**
+     * 链表式集合实现的栈测试方法
+     */
     private static void linkStackTest() {
-        LinkedStack<Integer> arrayStack = new LinkedStack<>();
+        SingleLinkedStack<Integer> linkedStack = new SingleLinkedStack<>();
         for (int i = 0; i < 5; i++) {
-            arrayStack.push(i);
-            System.out.println(arrayStack);
+            linkedStack.push(i);
+            System.out.println(linkedStack);
         }
-        arrayStack.pop();
-        arrayStack.pop();
-        Integer peek = arrayStack.peek();
+        linkedStack.pop();
+        linkedStack.pop();
+        Integer peek = linkedStack.peek();
         System.out.println(peek);
+        //SingleLinkedStack Stack ：head: 0->NULL
+        //SingleLinkedStack Stack ：head: 1->0->NULL
+        //SingleLinkedStack Stack ：head: 2->1->0->NULL
+        //SingleLinkedStack Stack ：head: 3->2->1->0->NULL
+        //SingleLinkedStack Stack ：head: 4->3->2->1->0->NULL
+        //2
     }
 
+    /**
+     * 数组式集合实现的栈测试方法
+     */
     private static void arrayStackTest() {
         ArrayGroupStack<Integer> arrayGroupStack = new ArrayGroupStack<>();
         for (int i = 0; i < 5; i++) {

@@ -48,7 +48,7 @@ public class BST2<E extends Comparable<E>> {
      * 语义: 向以node为根的二分搜索树中插入元素e，递归算法
      *
      * @param node
-     * @param e
+     * @param el
      */
     /**
      * 返回插入新节点后二分搜索树的根

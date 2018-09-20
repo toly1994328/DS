@@ -8,15 +8,22 @@ package Jutils;
  */
 public abstract class TimeTest {
 
+
     public TimeTest() {
-        this("");
+        this("", 1000);
     }
 
-    public TimeTest(String str) {
-        long startTime = System.currentTimeMillis();
-        run();
-        long endTime = System.currentTimeMillis();
-        System.out.println(str+"方法耗时:" + (endTime - startTime)/1000.f + "秒");
+    public TimeTest(int count) {
+        this("", count);
+    }
+
+    public TimeTest(String str, int count) {
+        long startTime = System.nanoTime();
+        for (int i = 0; i < count; i++) {
+            run();
+        }
+        long endTime = System.nanoTime();
+        System.out.println(str + "方法耗时:" + (endTime - startTime) / 1e9 + "秒");
     }
 
     protected abstract void run();

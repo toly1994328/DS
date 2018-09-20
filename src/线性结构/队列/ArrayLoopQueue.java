@@ -34,7 +34,6 @@ public class ArrayLoopQueue<T> implements IQueue<T> {
         this(11);
     }
 
-
     /**
      * 一参构造
      *
@@ -54,6 +53,7 @@ public class ArrayLoopQueue<T> implements IQueue<T> {
             grow(getCapacity() * 2);
         }
         data[tail] = el;
+        //插入数据时对尾标示进行操作
         tail = (tail + 1) % data.length;
         size++;
     }
@@ -65,6 +65,7 @@ public class ArrayLoopQueue<T> implements IQueue<T> {
         }
         T ret = data[front];
         data[front] = null;
+        //插入数据时对首标示进行操作
         front = (front + 1) % data.length;
         size--;
         if (size == getCapacity() / 4 && getCapacity() / 2 != 0) {
@@ -81,7 +82,6 @@ public class ArrayLoopQueue<T> implements IQueue<T> {
         return data[front];
     }
 
-
     /**
      * 重新确定容量
      * @param newCapacity 新的容量
@@ -89,14 +89,13 @@ public class ArrayLoopQueue<T> implements IQueue<T> {
     private void grow(int newCapacity) {
         T[] newData = (T[]) new Object[newCapacity + 1];
         for (int i = 0; i < size; i++) {
-            newData[i] = data[(i + front) % data.length]; // 此时在newData中队首对齐回来，data中就得有一个front的偏移量
+            // 此时在newData中队首对齐回来，data中就得有一个front的偏移量
+            newData[i] = data[(i + front) % data.length];
         }
         data = newData;
         front = 0;
         tail = size;
     }
-
-
 
     /**
      * 获取容量
@@ -129,7 +128,8 @@ public class ArrayLoopQueue<T> implements IQueue<T> {
      * @return 队列是否满了
      */
     public boolean isFull() {
-        return (tail + 1) % data.length == front; // 下一个tail指向front
+        // tail的下一个位置等于front时
+        return (tail + 1) % data.length == front;
     }
 
     @Override
@@ -145,6 +145,4 @@ public class ArrayLoopQueue<T> implements IQueue<T> {
         res.append("] tail");
         return res.toString();
     }
-
-
 }

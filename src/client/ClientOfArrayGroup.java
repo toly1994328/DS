@@ -12,34 +12,67 @@ import 线性结构.数组.ArrayGroup;
 public class ClientOfArrayGroup {
 
     public static void main(String[] args) {
-        ArrayGroup<String> arrayGroup = new ArrayGroup<>();
-
 //        testAdd(arrayGroup);
+
 
 //        otherTest(arrayGroup);
 
-        int testCount = 100000000;
-
-        for (int i = 0; i < testCount; i++) {
-            arrayGroup.addLast("a");
-        }
+        int testCount = 10000000;
 
 
-//        new TimeTest("clear:") {
-//            @Override
-//            protected void run() {
-//                arrayGroup.clear();
-//            }
-//        };
+//        addLastTest(testCount);
+//        addFirstTest(testCount);
+        removeLastTest(testCount);
+//        removeFirstTest(testCount);
 
-        new TimeTest("addLast:") {
+    }
+
+    private static void addFirstTest(int testCount) {
+        ArrayGroup<String> arrayGroup = new ArrayGroup<>();
+        new TimeTest("addFirst:", testCount) {
             @Override
             protected void run() {
-                arrayGroup.clear();
+                arrayGroup.addFirst("A");
             }
         };
+    }
 
+    private static void addLastTest(int testCount) {
+        ArrayGroup<String> arrayGroup = new ArrayGroup<>();
+        new TimeTest("addLast:", testCount) {
+            @Override
+            protected void run() {
+                arrayGroup.addLast("A");
+            }
+        };
+    }
 
+    private static void removeLastTest(int testCount) {
+        ArrayGroup<String> arrayGroup = new ArrayGroup<>();
+        for (int i = 0; i < testCount; i++) {
+            arrayGroup.addLast("A");
+        }
+
+        new TimeTest("removeLast:", testCount) {
+            @Override
+            protected void run() {
+                arrayGroup.removeLast();
+            }
+        };
+    }
+
+    private static void removeFirstTest(int testCount) {
+        ArrayGroup<String> arrayGroup = new ArrayGroup<>();
+        for (int i = 0; i < testCount; i++) {
+            arrayGroup.addLast("A");
+        }
+
+        new TimeTest("removeFirst:", testCount) {
+            @Override
+            protected void run() {
+                arrayGroup.removeFirst();
+            }
+        };
     }
 
     private static void otherTest(ArrayGroup<String> arrayGroup) {
@@ -49,40 +82,40 @@ public class ClientOfArrayGroup {
         arrayGroup.addLast("c");
         arrayGroup.addLast("f");
         arrayGroup.addLast("a");
-        arrayGroup.addLast("e");
+        arrayGroup.addLast("el");
         arrayGroup.addLast("d");
 
         System.out.println(arrayGroup);
         //ArrayGroup:size =8,capacity=10
-        //[a, a, b, c, f, a, e, d]
+        //[a, a, b, c, f, a, el, d]
 
         //定点删除操作
         String remove = arrayGroup.remove(3);
         System.out.println(remove);//c
         System.out.println(arrayGroup);
         //ArrayGroup:size =7,capacity=10
-        //[a, a, b, f, a, e, d]
+        //[a, a, b, f, a, el, d]
 
         //定元素删除
         int a = arrayGroup.removeEl("a");
         System.out.println(a);//0
         System.out.println(arrayGroup);
         //ArrayGroup:size =6,capacity=10
-        //[a, b, f, a, e, d]
+        //[a, b, f, a, el, d]
 
         //定元素全删除
         boolean ok = arrayGroup.removeEls("a");
         System.out.println(ok);//true
         System.out.println(arrayGroup);
         //ArrayGroup:size =4,capacity=10
-        //[b, f, e, d]
+        //[b, f, el, d]
 
         //定点修改
         String toly = arrayGroup.set(3, "toly");
         System.out.println(toly);//d
         System.out.println(arrayGroup);
         //ArrayGroup:size =4,capacity=10
-        //[b, f, e, toly]
+        //[b, f, el, toly]
 
         //是否存在元素
         boolean contains = arrayGroup.contains("b");
@@ -95,13 +128,13 @@ public class ClientOfArrayGroup {
         arrayGroup.contact(2, arrayGroup2);
         System.out.println(arrayGroup);
         //ArrayGroup:size =6,capacity=10
-        //[b, f, e, 1, 2, toly]
+        //[b, f, el, 1, 2, toly]
 
         //末尾插入集合
         arrayGroup.contact(arrayGroup2);
         System.out.println(arrayGroup);
         //ArrayGroup:size =8,capacity=10
-        //[b, f, e, 1, 2, toly, 1, 2]
+        //[b, f, el, 1, 2, toly, 1, 2]
 
         arrayGroup.clear();
         System.out.println(arrayGroup);

@@ -1,44 +1,12 @@
-package 线性结构.链表;
+package leetCode.code203_删除链表中的节点;
 
 /**
  * 作者：张风捷特烈
- * 时间：2018/8/18 0018:6:15
+ * 时间：2018/9/20 0020:16:10
  * 邮箱：1981462002@qq.com
  * 说明：
- * 输入: 1->2->6->3->4->5->6, val = 6
- * 输出: 1->2->3->4->5
  */
-public class DelAllOfLinkEls {
-    public ListNode removeElements(ListNode head, int val) {
-
-        while (head != null && head.val == val) {
-            head = head.next;// head后移
-        }
-        if (head == null) {
-            return null;
-        }
-        ListNode prev = head;
-        while (prev.next != null) {
-            if (prev.next.val == val) {
-                prev.next = prev.next.next; // prev.next.next
-            } else {
-                prev = prev.next;
-            }
-        }
-        return head;
-    }
-
-    public static void main(String[] args) {
-        int[] nums = {1,2,6,3,4,5,6};
-        ListNode head = new ListNode(nums);
-        System.out.println(head);
-        ListNode res = new DelAllOfLinkEls().removeElements(head,6);
-        System.out.println(res);
-    }
-}
-
-
-class ListNode {
+public class ListNode {
     int val;
     ListNode next;
 

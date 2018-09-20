@@ -1,4 +1,6 @@
-package 线性结构.链表;
+package client;
+
+import 线性结构.链表.DoubleLinkedGroup;
 
 /**
  * 作者：张风捷特烈
