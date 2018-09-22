@@ -12,17 +12,17 @@ import 线性结构.链表.SingleLinkedGroup;
 public class ClientOfSingleLinkedGroup {
     public static void main(String[] args) {
 //        baseTest();
-//        otherTest();
+        otherTest();
 
         int opCount = 10000000;
 
 //        addLastTest(opCount);
-        addFirstTest(opCount);
+//        addFirstTest(opCount);
 //        removeLastTest(opCount);
-        removeFirstTest(opCount);
+//        removeFirstTest(opCount);
     }
 
-
+    /////////////////////////////性能测试S//////////////////////////
     private static void addFirstTest(int testCount) {
         SingleLinkedGroup<String> linkedGroup = new SingleLinkedGroup<>();
         new TimeTest("addFirst:", testCount) {
@@ -70,8 +70,11 @@ public class ClientOfSingleLinkedGroup {
             }
         };
     }
+/////////////////////////////性能测试E//////////////////////////
 
-
+    /**
+     * 其他方法测试
+     */
     private static void otherTest() {
         SingleLinkedGroup<String> linkedGroup = new SingleLinkedGroup<>();
         linkedGroup.addLast("a");
@@ -109,12 +112,15 @@ public class ClientOfSingleLinkedGroup {
         linkedGroup2.addLast("3");
         linkedGroup2.addLast("2");
 
-        linkedGroup.contact(1, linkedGroup2);
+        linkedGroup.contact(0, linkedGroup2);
         System.out.println(linkedGroup);
         //head: b->c->1->3->2->NULL
 
     }
 
+    /**
+     * 增删改查测试
+     */
     private static void baseTest() {
         SingleLinkedGroup<String> list = new SingleLinkedGroup<>();
         list.addFirst("特");

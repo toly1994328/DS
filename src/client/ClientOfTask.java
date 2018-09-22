@@ -1,11 +1,8 @@
 package client;
 
 import Jutils.TimeTest;
-import base.IStack;
 import 线性结构.栈.ArrayGroupStack;
 import 线性结构.栈.SingleLinkedStack;
-
-import java.util.Random;
 
 /**
  * 作者：张风捷特烈
@@ -18,7 +15,6 @@ public class ClientOfTask {
 //        arrayStackTest();
 //        linkStackTest();
 
-//        timeTest();
 
         int opCount = 10000000;
 //        数组栈添加(opCount);
@@ -26,10 +22,11 @@ public class ClientOfTask {
         数组栈出栈(opCount);
         链表栈出栈(opCount);
     }
+/////////////////////////////性能测试S//////////////////////////
 
     private static void 链表栈添加(int opCount) {
         SingleLinkedStack<Integer> linkedStack = new SingleLinkedStack<>();
-        new TimeTest("链表栈添加", opCount){
+        new TimeTest("链表栈添加", opCount) {
             @Override
             protected void run() {
                 linkedStack.push(1);
@@ -43,7 +40,7 @@ public class ClientOfTask {
             linkedStack.push(1);
         }
 
-        new TimeTest("链表栈出栈", opCount){
+        new TimeTest("链表栈出栈", opCount) {
             @Override
             protected void run() {
                 linkedStack.pop();
@@ -61,6 +58,7 @@ public class ClientOfTask {
             }
         };
     }
+
     private static void 数组栈出栈(int opCount) {
         ArrayGroupStack<Integer> arrayGroupStack = new ArrayGroupStack<>();
         for (int i = 0; i < opCount; i++) {
@@ -74,17 +72,7 @@ public class ClientOfTask {
         };
     }
 
-    private static void timeTest() {
-        int opCount = 1000000;
-
-        ArrayGroupStack<Integer> arrayGroupStack = new ArrayGroupStack<>();
-        double time1 = testStack(arrayGroupStack, opCount);
-        System.out.println("ArrayGroupStack, time: " + time1 + " s");
-
-        SingleLinkedStack<Integer> linkedListStack = new SingleLinkedStack<>();
-        double time2 = testStack(linkedListStack, opCount);
-        System.out.println("SingleLinkedStack, time: " + time2 + " s");
-    }
+/////////////////////////////性能测试E//////////////////////////
 
     /**
      * 链表式集合实现的栈测试方法
@@ -126,23 +114,6 @@ public class ClientOfTask {
         //Stack ：[ 0, 1, 2, 3] <--top
         //Stack ：[ 0, 1, 2, 3, 4] <--top
         //2
-    }
-
-
-    // 测试使用stack运行opCount个push和pop操作所需要的时间，单位：秒
-    private static double testStack(IStack<Integer> stack, int opCount){
-
-        long startTime = System.nanoTime();
-
-        Random random = new Random();
-        for(int i = 0 ; i < opCount ; i ++)
-            stack.push(random.nextInt(Integer.MAX_VALUE));
-        for(int i = 0 ; i < opCount ; i ++)
-            stack.pop();
-
-        long endTime = System.nanoTime();
-
-        return (endTime - startTime) / 1e9;
     }
 
 }

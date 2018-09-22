@@ -109,7 +109,7 @@ public class ArrayGroup<T> extends Group<T> {
     @Override
     public T set(int index, T el) {
         if (index < 0 || index >= size) {
-            throw new IllegalArgumentException("Set failed! Make sure index < 0 || index > size");
+            throw new IllegalArgumentException("ISet failed! Make sure index < 0 || index > size");
         }
         T oldEl = get(index);
         datas[index] = el;

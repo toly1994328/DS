@@ -13,19 +13,21 @@ public class Sum {
 
     /**
      * 递归函数
+     *
      * @param arr 数组
-     * @param l 开始位置
+     * @param index   开始位置
      * @return 从开始位置到最后所有元素和
      */
-    private static int sum(int[] arr,int l) {
-        if (l == arr.length) {
+    private static int sum(int[] arr, int index) {
+        if (index == arr.length) {
             return 0;
         }
-
-        return arr[l] + sum(arr, l + 1);
+        int temp = sum(arr, index + 1);
+        int result = arr[index] + temp;
+        return result;
     }
 
     public static void main(String[] args) {
-        System.out.println(sum(new int[]{1, 2, 3, 4}));
+        System.out.println(sum(new int[]{1, 2, 3}));
     }
 }

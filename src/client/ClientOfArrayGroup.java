@@ -26,7 +26,7 @@ public class ClientOfArrayGroup {
 //        removeFirstTest(testCount);
 
     }
-
+    /////////////////////////////性能测试S//////////////////////////
     private static void addFirstTest(int testCount) {
         ArrayGroup<String> arrayGroup = new ArrayGroup<>();
         new TimeTest("addFirst:", testCount) {
@@ -74,7 +74,7 @@ public class ClientOfArrayGroup {
             }
         };
     }
-
+    /////////////////////////////性能测试E//////////////////////////
     private static void otherTest(ArrayGroup<String> arrayGroup) {
         arrayGroup.addLast("a");
         arrayGroup.addLast("a");

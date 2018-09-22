@@ -2,8 +2,6 @@ package 线性结构.链表;
 
 import base.Group;
 
-import java.util.List;
-
 /**
  * 作者：张风捷特烈
  * 时间：2018/9/19 0019:8:34
@@ -16,6 +14,7 @@ public class DoubleLinkedGroup<T> extends Group<T> {
      * 虚拟头结点
      */
     private Node headNode;
+
     /**
      * 虚拟尾节点
      */
@@ -27,11 +26,17 @@ public class DoubleLinkedGroup<T> extends Group<T> {
 
     @Override
     public void add(int index, T el) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Add failed. Illegal index");
+        }
         addNodeBefore(getNode(index), el);
     }
 
     @Override
     public T remove(int index) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Remove failed. Illegal index");
+        }
         return removeNode(getNode(index));
     }
 
@@ -43,25 +48,85 @@ public class DoubleLinkedGroup<T> extends Group<T> {
 
     @Override
     public T set(int index, T el) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("ISet failed. Illegal index");
+        }
         Node<T> node = getNode(index);
-        T oldData = node.data;
-        node.data = el;
+        T oldData = node.el;
+        node.el = el;
         return oldData;
     }
 
     @Override
     public T get(int index) {
-        return getNode(index).data;
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Get failed. Illegal index");
+        }
+        return getNode(index).el;
     }
 
     @Override
     public int[] getIndex(T el) {
-        return null;
+        //临时数组
+        int[] tempArray = new int[size];
+        //重复个数
+        int index = 0;
+        int count = 0;
+        Node node = headNode.next;
+        while (node != null) {
+            if (el.equals(node.el)) {
+                tempArray[index] = -1;
+                count++;
+            }
+            index++;
+            node = node.next;
+        }
+        //将临时数组压缩
+        int[] indexArray = new int[count];
+        int indexCount = 0;
+        for (int i = 0; i < tempArray.length; i++) {
+            if (tempArray[i] == -1) {
+                indexArray[indexCount] = i;
+                indexCount++;
+            }
+        }
+        return indexArray;
     }
 
     @Override
     public Group<T> contact(int index, Group<T> group) {
-        return null;
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Contact failed. Illegal index");
+        }
+
+        DoubleLinkedGroup linkedGroup = (DoubleLinkedGroup) group;
+        Node targetNode = getNode(index);
+        Node targetNextNode = targetNode.next;
+
+        //目标节点的next指向待接链表的第一个节点
+        targetNode.next = linkedGroup.getHeadNode().next;
+        //向待接链表的第一个节点的prev指向目标节点
+        linkedGroup.getHeadNode().next.prev = targetNode;
+
+        //目标节点的下一节点指的prev向待接链表的最后一个节点
+        targetNextNode.prev = linkedGroup.getTailNode().prev;
+        //向待接链表的最后一个节点的next指向目标节点的下一节点的
+        linkedGroup.getTailNode().prev.next = targetNextNode;
+
+        return this;
+    }
+
+    @Override
+    public void addLast(T el) {
+        add(size, el);
+    }
+
+    public Node getHeadNode() {
+        return headNode;
+    }
+
+    public Node getTailNode() {
+        return tailNode;
     }
 
     /////////////////////////////节点操作//////////////////////////
@@ -96,7 +161,7 @@ public class DoubleLinkedGroup<T> extends Group<T> {
         target.next.prev = target.prev;
         //链表长度-1
         size--;
-        return target.data;
+        return target.el;
     }
 
 
@@ -141,6 +206,16 @@ public class DoubleLinkedGroup<T> extends Group<T> {
         return targetNode;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        res.append("head: ");
+        for (Node cur = headNode.next; cur != null; cur = cur.next) {
+            res.append(cur.el + "->");
+        }
+        return res.toString();
+    }
+
     /**
      * 节点类
      *
@@ -150,7 +225,7 @@ public class DoubleLinkedGroup<T> extends Group<T> {
         /**
          * 数据
          */
-        public T data;
+        public T el;
         /**
          * 前节点
          */
@@ -160,8 +235,8 @@ public class DoubleLinkedGroup<T> extends Group<T> {
          */
         public Node next;
 
-        public Node(Node prev, Node next, T data) {
-            this.data = data;
+        public Node(Node prev, Node next, T el) {
+            this.el = el;
             this.prev = prev;
             this.next = next;
         }

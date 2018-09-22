@@ -29,6 +29,7 @@ public class ClientOfQueue {
 
     }
 
+    /////////////////////////////性能测试S//////////////////////////
     private static void 数组普通队列出队测试(int opCount) {
         ArrayGroupQueue<Integer> arrayGroupQueue = new ArrayGroupQueue<>();
 
@@ -101,6 +102,7 @@ public class ClientOfQueue {
             }
         };
     }
+/////////////////////////////性能测试E//////////////////////////
 
     /**
      * 链表队列测试
@@ -123,7 +125,7 @@ public class ClientOfQueue {
     }
 
     /**
-     * 循环队列测试
+     * 数组循环队列测试
      */
     private static void LoopQueueTest() {
         ArrayLoopQueue<Integer> queue = new ArrayLoopQueue<>(8);

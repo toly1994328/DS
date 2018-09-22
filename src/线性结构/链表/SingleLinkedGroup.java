@@ -49,7 +49,7 @@ public class SingleLinkedGroup<T> extends Group<T> {
     @Override
     public T set(int index, T el) {
         if (index < 0 || index > size) {
-            throw new IllegalArgumentException("Set failed. Illegal index");
+            throw new IllegalArgumentException("ISet failed. Illegal index");
         }
         return setNode(index + 1, el).el;
     }
@@ -93,13 +93,16 @@ public class SingleLinkedGroup<T> extends Group<T> {
 
     @Override
     public Group<T> contact(int index, Group<T> group) {
+        if (index < 0 || index > size) {
+            throw new IllegalArgumentException("Contact failed. Illegal index");
+        }
         SingleLinkedGroup<T> linkedGroup = (SingleLinkedGroup<T>) group;
         //获取待接入链表 头结点
         Node firstNode = linkedGroup.getHeadNode().next;
         //获取待接入链表 尾结点
         Node lastNode = linkedGroup.getLastNode();
         //获取目标节点
-        Node<T> target = getNode(index+1);
+        Node<T> target = getNode(index + 1);
         //获取目标节点的下一节点
         Node targetNext = target.next;
         //获取目标节点的next连到 接入链表 头结点
