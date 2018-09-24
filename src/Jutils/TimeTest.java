@@ -10,7 +10,7 @@ public abstract class TimeTest {
 
 
     public TimeTest() {
-        this("", 1000);
+        this("", 1);
     }
 
     public TimeTest(int count) {

@@ -177,6 +177,20 @@ public class ArrayGroup<T> extends Group<T> {
         datas = newData;
     }
 
+    /**
+     * 交换i和j的位置
+     * @param i i
+     * @param j j
+     */
+    public void swap(int i, int j) {
+        if (i < 0 || i >= size || j < 0 || j >= size) {
+            throw new IllegalArgumentException("ISet failed! Make sure index < 0 || index > size");
+        }
+        T t = datas[i];
+        datas[i] = datas[j];
+        datas[j] = t;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
