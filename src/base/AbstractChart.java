@@ -6,11 +6,11 @@ package base;
  * 邮箱：1981462002@qq.com
  * 说明：集合的基类
  */
-public abstract class Group<T> {
+public abstract class AbstractChart<T> implements IChart<T> {
     protected int size;
 
     /**
-     * 定点添加
+     * {@inheritDoc}
      *
      * @param index 索引
      * @param el    数据元素
@@ -18,7 +18,7 @@ public abstract class Group<T> {
     public abstract void add(int index, T el);
 
     /**
-     * 首添加
+     * {@inheritDoc}
      *
      * @param el 数据元素
      */
@@ -27,7 +27,7 @@ public abstract class Group<T> {
     }
 
     /**
-     * 尾添加
+     * 添加尾
      *
      * @param el 数据元素
      */
@@ -36,7 +36,7 @@ public abstract class Group<T> {
     }
 
     /**
-     * 定位删除
+     * {@inheritDoc}
      *
      * @param index 索引
      * @return 删除的元素
@@ -137,21 +137,21 @@ public abstract class Group<T> {
     /**
      * 连接两个集合
      *
-     * @param group 插入集合
+     * @param iChart 插入集合
      * @return 合并后的集合
      */
-    public Group<T> contact(Group<T> group) {
-        return contact(size-1, group);
+    public IChart<T> contact(IChart<T> iChart) {
+        return contact(size - 1, iChart);
     }
 
     /**
      * 定点连接两个集合
      *
-     * @param index 索引
-     * @param group 插入集合
+     * @param index         索引
+     * @param iChart 插入集合
      * @return 合并后的集合
      */
-    public abstract Group<T> contact(int index, Group<T> group);
+    public abstract IChart<T> contact(int index, IChart<T> iChart);
 
     /**
      * 是否为空

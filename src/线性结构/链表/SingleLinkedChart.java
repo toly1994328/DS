@@ -1,6 +1,7 @@
 package 线性结构.链表;
 
-import base.Group;
+import base.AbstractChart;
+import base.IChart;
 
 /**
  * 作者：张风捷特烈
@@ -8,14 +9,14 @@ import base.Group;
  * 邮箱：1981462002@qq.com
  * 说明：单链表实现集合
  */
-public class SingleLinkedGroup<T> extends Group<T> {
+public class SingleLinkedChart<T> extends AbstractChart<T> {
 
     /**
      * 虚拟头结点
      */
     private Node headNode;
 
-    public SingleLinkedGroup() {
+    public SingleLinkedChart() {
         clear();
     }
 
@@ -92,11 +93,11 @@ public class SingleLinkedGroup<T> extends Group<T> {
     }
 
     @Override
-    public Group<T> contact(int index, Group<T> group) {
+    public IChart<T> contact(int index, IChart<T> iChart) {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Contact failed. Illegal index");
         }
-        SingleLinkedGroup<T> linkedGroup = (SingleLinkedGroup<T>) group;
+        SingleLinkedChart<T> linkedGroup = (SingleLinkedChart<T>) iChart;
         //获取待接入链表 头结点
         Node firstNode = linkedGroup.getHeadNode().next;
         //获取待接入链表 尾结点

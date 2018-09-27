@@ -1,7 +1,7 @@
-package client;
+package 线性结构.client;
 
 import Jutils.TimeTest;
-import 线性结构.链表.SingleLinkedGroup;
+import 线性结构.链表.SingleLinkedChart;
 
 /**
  * 作者：张风捷特烈
@@ -24,7 +24,7 @@ public class ClientOfSingleLinkedGroup {
 
     /////////////////////////////性能测试S//////////////////////////
     private static void addFirstTest(int testCount) {
-        SingleLinkedGroup<String> linkedGroup = new SingleLinkedGroup<>();
+        SingleLinkedChart<String> linkedGroup = new SingleLinkedChart<>();
         new TimeTest("addFirst:", testCount) {
             @Override
             protected void run() {
@@ -34,7 +34,7 @@ public class ClientOfSingleLinkedGroup {
     }
 
     private static void addLastTest(int testCount) {
-        SingleLinkedGroup<String> singleLinkedGroup = new SingleLinkedGroup<>();
+        SingleLinkedChart<String> singleLinkedGroup = new SingleLinkedChart<>();
         new TimeTest("addLast:", testCount) {
             @Override
             protected void run() {
@@ -44,7 +44,7 @@ public class ClientOfSingleLinkedGroup {
     }
 
     private static void removeLastTest(int testCount) {
-        SingleLinkedGroup<String> SingleLinkedGroup = new SingleLinkedGroup<>();
+        SingleLinkedChart<String> SingleLinkedGroup = new SingleLinkedChart<>();
         for (int i = 0; i < testCount; i++) {
             SingleLinkedGroup.addFirst("A");
         }
@@ -58,7 +58,7 @@ public class ClientOfSingleLinkedGroup {
     }
 
     private static void removeFirstTest(int testCount) {
-        SingleLinkedGroup<String> SingleLinkedGroup = new SingleLinkedGroup<>();
+        SingleLinkedChart<String> SingleLinkedGroup = new SingleLinkedChart<>();
         for (int i = 0; i < testCount; i++) {
             SingleLinkedGroup.addFirst("A");
         }
@@ -76,7 +76,7 @@ public class ClientOfSingleLinkedGroup {
      * 其他方法测试
      */
     private static void otherTest() {
-        SingleLinkedGroup<String> linkedGroup = new SingleLinkedGroup<>();
+        SingleLinkedChart<String> linkedGroup = new SingleLinkedChart<>();
         linkedGroup.addLast("a");
         linkedGroup.addLast("b");
         linkedGroup.addLast("a");
@@ -106,7 +106,7 @@ public class ClientOfSingleLinkedGroup {
         System.out.println(linkedGroup);
         //head: b->c->NULL
 
-        SingleLinkedGroup<String> linkedGroup2 = new SingleLinkedGroup<>();
+        SingleLinkedChart<String> linkedGroup2 = new SingleLinkedChart<>();
 
         linkedGroup2.addLast("1");
         linkedGroup2.addLast("3");
@@ -122,7 +122,7 @@ public class ClientOfSingleLinkedGroup {
      * 增删改查测试
      */
     private static void baseTest() {
-        SingleLinkedGroup<String> list = new SingleLinkedGroup<>();
+        SingleLinkedChart<String> list = new SingleLinkedChart<>();
         list.addFirst("特");
         list.addLast("烈");
         list.addFirst("风");

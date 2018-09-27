@@ -1,8 +1,7 @@
 package 数据组织形式.集合;
 
 import base.ISet;
-import 线性结构.链表.DoubleLinkedGroup;
-import 线性结构.链表.SingleLinkedGroup;
+import 线性结构.链表.DoubleLinkedChart;
 
 /**
  * 作者：张风捷特烈
@@ -11,14 +10,14 @@ import 线性结构.链表.SingleLinkedGroup;
  * 说明：二分搜索树实现集合
  */
 public class DoubleLinkedSet<T extends Comparable<T>> implements ISet<T> {
-    private DoubleLinkedGroup<T> list;
+    private DoubleLinkedChart<T> list;
 
     public DoubleLinkedSet() {
         this(false);
     }
 
     public DoubleLinkedSet(boolean canSame) {
-        list = new DoubleLinkedGroup<>();
+        list = new DoubleLinkedChart<>();
 
     }
 

@@ -331,10 +331,10 @@ public class BST<T extends Comparable<T>> {
 //                Integer key = mNodeCountMap.get(el);
 //                if (key == null) {
 //                    key = 2;
-//                    mNodeCountMap.put(el, key);
+//                    mNodeCountMap.add(el, key);
 //                } else {
 //                    key++;
-//                    mNodeCountMap.put(el, key);
+//                    mNodeCountMap.add(el, key);
 //                }
 //            }
 //        }

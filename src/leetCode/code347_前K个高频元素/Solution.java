@@ -1,11 +1,6 @@
 package leetCode.code347_前K个高频元素;
 
 
-import base.Group;
-import base.IQueue;
-import 树结构.二叉堆.MaxHeap;
-import 树结构.优先队列.PriorityQueue;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeMap;
@@ -279,7 +274,7 @@ class Solution {
         @Override
         public String toString() {
             StringBuilder sb = new StringBuilder();
-            sb.append(String.format("ArrayGroup:size =%d,capacity=%d\n", size, datas.length));
+            sb.append(String.format("ArrayChart:size =%d,capacity=%d\n", size, datas.length));
             sb.append("[");
             for (int i = 0; i < size; i++) {
                 sb.append(datas[i].toString());

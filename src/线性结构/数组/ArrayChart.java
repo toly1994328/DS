@@ -1,6 +1,7 @@
 package 线性结构.数组;
 
-import base.Group;
+import base.AbstractChart;
+import base.IChart;
 
 /**
  * 作者：张风捷特烈
@@ -8,7 +9,7 @@ import base.Group;
  * 邮箱：1981462002@qq.com
  * 说明：数组集合
  */
-public class ArrayGroup<T> extends Group<T> {
+public class ArrayChart<T> extends AbstractChart<T> {
     /**
      * 成员数组
      */
@@ -23,7 +24,7 @@ public class ArrayGroup<T> extends Group<T> {
     /**
      * 无参构造--默认容量10
      */
-    public ArrayGroup() {
+    public ArrayChart() {
         this(10);
     }
 
@@ -32,7 +33,7 @@ public class ArrayGroup<T> extends Group<T> {
      *
      * @param capacity 集合容量
      */
-    public ArrayGroup(int capacity) {
+    public ArrayChart(int capacity) {
         //实例化数组
         datas = (T[]) new Object[capacity];
     }
@@ -42,7 +43,7 @@ public class ArrayGroup<T> extends Group<T> {
      *
      * @param datas 传入静态数组
      */
-    public ArrayGroup(T[] datas) {
+    public ArrayChart(T[] datas) {
         this.datas = datas;
         this.size = datas.length;
 
@@ -146,10 +147,10 @@ public class ArrayGroup<T> extends Group<T> {
     }
 
     @Override
-    public Group<T> contact(int index, Group<T> group) {
+    public IChart<T> contact(int index, IChart<T> iChart) {
         //从index处遍历本数组，将待插入数据一个一个插入
-        for (int i = index; i < index + group.size(); i++) {
-            add(i + 1, group.get(i - index));
+        for (int i = index; i < index + iChart.size(); i++) {
+            add(i + 1, iChart.get(i - index));
         }
         return this;
     }
@@ -194,7 +195,7 @@ public class ArrayGroup<T> extends Group<T> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("ArrayGroup:size =%d,capacity=%d\n", size, datas.length));
+        sb.append(String.format("ArrayChart:size =%d,capacity=%d\n", size, datas.length));
         sb.append("[");
         for (int i = 0; i < size; i++) {
             sb.append(datas[i].toString());

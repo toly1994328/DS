@@ -1,10 +1,7 @@
 package 数据组织形式.集合;
 
 import base.ISet;
-import 树结构.二分搜索树.BST;
-import 线性结构.链表.SingleLinkedGroup;
-
-import java.util.Map;
+import 线性结构.链表.SingleLinkedChart;
 
 /**
  * 作者：张风捷特烈
@@ -13,14 +10,14 @@ import java.util.Map;
  * 说明：二分搜索树实现集合
  */
 public class SingleLinkedSet<T extends Comparable<T>> implements ISet<T> {
-    private SingleLinkedGroup<T> list;
+    private SingleLinkedChart<T> list;
 
     public SingleLinkedSet() {
         this(false);
     }
 
     public SingleLinkedSet(boolean canSame) {
-        list = new SingleLinkedGroup<>();
+        list = new SingleLinkedChart<>();
 
     }
 

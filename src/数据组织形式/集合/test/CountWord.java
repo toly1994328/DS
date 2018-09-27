@@ -1,9 +1,7 @@
 package 数据组织形式.集合.test;
 
 import Jutils.TimeTest;
-import 数据组织形式.集合.BSTSet;
-import 数据组织形式.集合.DoubleLinkedSet;
-import 数据组织形式.集合.SingleLinkedSet;
+import 数据组织形式.集合.*;
 
 import java.util.ArrayList;
 
@@ -17,33 +15,54 @@ public class CountWord {
     public static void main(String[] args) {
         System.out.println("《吸血鬼日记》原著英文.txt");
 
-        new TimeTest(1) {
+//        new TimeTest("Tire",1) {
+//
+//            @Override
+//            protected void run() {
+////                countByBST();
+////                countBySingleLinked();
+////                countByDoubleLinked();
+//                countByTire();
+//            }
+//        };
+
+//        new TimeTest("BST",1) {
+//
+//            @Override
+//            protected void run() {
+//                countByBST();
+//            }
+//        };
+
+        new TimeTest("AVL",1) {
 
             @Override
             protected void run() {
-//                countByBST();
-//                countBySingleLinked();
-//                countByDoubleLinked();
+                countByAVL();
             }
         };
-
 
     }
 
     private static void countByBST() {
-        ArrayList<String> words1 = new ArrayList<>();
-        if (FileOperation.readFile("I:\\Java\\DS\\src\\数据组织形式\\集合\\test\\《吸血鬼日记》原著英文.txt", words1)) {
+        ArrayList<String> words = new ArrayList<>();
+        if (FileOperation.readFile("I:\\Java\\DS\\src\\数据组织形式\\集合\\test\\《吸血鬼日记》原著英文.txt", words)) {
 
-            System.out.println("Total words: " + words1.size());
+            System.out.println("Total words: " + words.size());
 
             BSTSet<String> set1 = new BSTSet<>();
-            for (String word : words1)
+            for (String word : words)
                 set1.add(word);
+
+            for(String word: words)
+                set1.contains(word);
+
             System.out.println("Total different words: " + set1.size());
 
             //Total words: 231446
             //Total different words: 9574
             //方法耗时:0.388587346秒
+            //添加查询后：BST方法耗时:0.468755831秒
         }
     }
 
@@ -77,9 +96,44 @@ public class CountWord {
         }
     }
 
+    private static void countByTire() {
+        ArrayList<String> words1 = new ArrayList<>();
+        if (FileOperation.readFile("I:\\Java\\DS\\src\\数据组织形式\\集合\\test\\《吸血鬼日记》原著英文.txt", words1)) {
+
+            System.out.println("Total words: " + words1.size());
+            TireSet set = new TireSet();
+            for (String word : words1)
+                set.add(word);
+
+            for(String word: words1)
+                set.contains(word);
+
+            System.out.println("Total different words: " + set.size());
+            //Total words: 231446
+            //Total different words: 9574
+            //Tire方法耗时:0.43592557秒
+        }
+    }
+
+    private static void countByAVL() {
+        ArrayList<String> words1 = new ArrayList<>();
+        if (FileOperation.readFile("I:\\Java\\DS\\src\\数据组织形式\\集合\\test\\《吸血鬼日记》原著英文.txt", words1)) {
+
+            System.out.println("Total words: " + words1.size());
+            AVLSet<String> set = new AVLSet<>();
+            for (String word : words1)
+                set.add(word);
+
+
+            System.out.println("Total different words: " + set.size());
+            //Total words: 231446
+            //Total different words: 9574
+            //AVL方法耗时:0.542959279秒
+        }
+    }
+
     //明显链表要慢很多很多：
     //罪魁祸首是谁？-----list.contains(el) 添加时判断是否重复O(n)
-
 
 
 }

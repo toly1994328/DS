@@ -2,7 +2,7 @@ package 线性结构.栈;
 
 
 import base.IStack;
-import 线性结构.数组.ArrayGroup;
+import 线性结构.数组.ArrayChart;
 
 
 /**
@@ -11,18 +11,18 @@ import 线性结构.数组.ArrayGroup;
  * 邮箱：1981462002@qq.com
  * 说明：栈的数组实现
  */
-public class ArrayGroupStack<T> implements IStack<T> {
+public class ArrayChartStack<T> implements IStack<T> {
     /**
      * 成员变量
      */
-    private ArrayGroup<T> array;
+    private ArrayChart<T> array;
 
-    public ArrayGroupStack(int capacity) {
-        array = new ArrayGroup<>(capacity);
+    public ArrayChartStack(int capacity) {
+        array = new ArrayChart<>(capacity);
     }
 
-    public ArrayGroupStack() {
-        array = new ArrayGroup<>();
+    public ArrayChartStack() {
+        array = new ArrayChart<>();
     }
 
 

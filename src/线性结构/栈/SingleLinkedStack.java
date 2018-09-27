@@ -2,7 +2,7 @@ package 线性结构.栈;
 
 
 import base.IStack;
-import 线性结构.链表.SingleLinkedGroup;
+import 线性结构.链表.SingleLinkedChart;
 
 /**
  * 作者：张风捷特烈
@@ -12,10 +12,10 @@ import 线性结构.链表.SingleLinkedGroup;
  */
 public class SingleLinkedStack<E> implements IStack<E> {
 
-    private SingleLinkedGroup<E> mLinkedGroup;
+    private SingleLinkedChart<E> mLinkedGroup;
 
     public SingleLinkedStack() {
-        mLinkedGroup = new SingleLinkedGroup<>();
+        mLinkedGroup = new SingleLinkedChart<>();
     }
 
 

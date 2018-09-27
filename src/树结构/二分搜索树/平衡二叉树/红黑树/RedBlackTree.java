@@ -1,6 +1,5 @@
-package 数据组织形式.映射;
+package 树结构.二分搜索树.平衡二叉树.红黑树;
 
-import base.IMap;
 
 /**
  * 作者：张风捷特烈
@@ -8,17 +7,21 @@ import base.IMap;
  * 邮箱：1981462002@qq.com
  * 说明：
  */
-public class BSTMap<K extends Comparable<K>, V> implements IMap<K, V> {
+public class RedBlackTree<K extends Comparable<K>, V> {
+
+    private static final boolean RED = true;
+    private static final boolean BLACK = false;
+
     private Node root;
     private int size;
 
 
-    @Override
-    public void put(K key, V value) {
+    public void add(K key, V value) {
         root = addNode(root, key, value);
+        //根节点颜色置黑
+        root.color = BLACK;
     }
 
-    @Override
     public V remove(K key) {
         Node node = getNode(root, key);
         if (node != null) {
@@ -28,18 +31,17 @@ public class BSTMap<K extends Comparable<K>, V> implements IMap<K, V> {
         return null;
     }
 
-    @Override
     public boolean contains(K key) {
         return getNode(root, key) != null;
     }
 
-    @Override
+
     public V get(K key) {
         Node node = getNode(root, key);
         return node == null ? null : node.value;
     }
 
-    @Override
+
     public void set(K key, V value) {
         Node node = getNode(root, key);
         if (node == null) {
@@ -85,11 +87,6 @@ public class BSTMap<K extends Comparable<K>, V> implements IMap<K, V> {
                     successor.right = removeMinNode(target.right);
                     successor.left = target.left;
                     target.left = target.right = null;
-
-//                    Node successor = getMaxNode(target.left);
-//                    successor.left = removeMaxNode(target.left);
-//                    successor.right = target.right;
-//                    target.left = target.right = null;
                     return successor;
             }
         }
@@ -159,18 +156,10 @@ public class BSTMap<K extends Comparable<K>, V> implements IMap<K, V> {
      */
     private Node addNode(Node target, K key, V value) {
 
-
         if (target == null) {
             size++;
             return new Node(null, null, key, value);
         }
-
-//        countRepeatNode(target, el);
-
-        //节点相同，并且不允许重复时
-//        if (el.equals(target.el) && !canSame) {
-//            return target;//传入值与父节点值相同,并且不允许相同时
-//        }
 
         if (key.compareTo(target.key) < 0) {
             target.left = addNode(target.left, key, value);
@@ -179,16 +168,85 @@ public class BSTMap<K extends Comparable<K>, V> implements IMap<K, V> {
         } else {
             target.value = value;
         }
+
+        if (isRed(target.right) && !isRed(target.left)) {
+            target = leftRotate(target);
+        }
+
+        if (isRed(target.left) && isRed(target.left.left)) {
+            target = rightRotate(target);
+        }
+        if (isRed(target.left) && isRed(target.right)) {
+            flipColors(target);
+        }
+
         return target;
     }
 
+    //    y                       x
+    //  /   \     左旋转         /  \
+    // T1   x   --------->    y    T3
+    //     / \              /   \
+    //    T2 T3            T1   T2
 
-    @Override
+    /**
+     * 红黑树左旋转
+     * @param y
+     * @return
+     */
+    private Node leftRotate(Node y) {
+        Node x = y.right;
+        //左旋转
+        y.right = x.left;
+        x.left = y;
+
+        x.color = y.color;
+        y.color = RED;
+        return x;
+    }
+
+    //       y                    x
+    //    /   \     右旋转       /  \
+    //   x    T3   ------->   T1    y
+    //  / \                       /  \
+    // T1 T2                     T2  T3
+    private Node rightRotate(Node y){
+
+        Node x = y.left;
+
+        // 右旋转
+        y.left = x.right;
+        x.right = y;
+
+        x.color = y.color;
+        y.color = RED;
+
+        return x;
+    }
+
+
+    // 颜色翻转
+    private void flipColors(Node node){
+
+        node.color = RED;
+        node.left.color = BLACK;
+        node.right.color = BLACK;
+    }
+
+
+    // 判断节点node的颜色
+    private boolean isRed(Node node){
+        if(node == null)
+            return BLACK;
+        return node.color;
+    }
+
+
     public int size() {
         return size;
     }
 
-    @Override
+
     public boolean isEmpty() {
         return size == 0;
     }
@@ -209,18 +267,21 @@ public class BSTMap<K extends Comparable<K>, V> implements IMap<K, V> {
         /**
          * 储存的数据元素
          */
-        private K key;
-        private V value;
+        public K key;
+        public V value;
         /**
          * 左子
          */
-        private Node left;
+        public Node left;
         /**
          * 右子
          */
-        private Node right;
+        public Node right;
 
-        private NodeType mNodeType;
+        /**
+         * 节点颜色
+         */
+        public boolean color;
 
         /**
          * 构造函数
@@ -235,25 +296,22 @@ public class BSTMap<K extends Comparable<K>, V> implements IMap<K, V> {
             this.value = value;
             this.left = left;
             this.right = right;
+            color = RED;
         }
 
         public NodeType getType() {
 
             if (this.right == null) {
                 if (this.left == null) {
-                    mNodeType = NodeType.LEAF;
                     return NodeType.LEAF;
                 } else {
-                    mNodeType = NodeType.RIGHT_NULL;
                     return NodeType.RIGHT_NULL;
                 }
             }
 
             if (this.left == null) {
-                mNodeType = NodeType.LEFT_NULL;
                 return NodeType.LEFT_NULL;
             } else {
-                mNodeType = NodeType.FULL;
                 return NodeType.FULL;
             }
 

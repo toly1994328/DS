@@ -1,7 +1,7 @@
-package client;
+package 线性结构.client;
 
 import Jutils.TimeTest;
-import 线性结构.栈.ArrayGroupStack;
+import 线性结构.栈.ArrayChartStack;
 import 线性结构.栈.SingleLinkedStack;
 
 /**
@@ -50,24 +50,24 @@ public class ClientOfTask {
 
     private static void 数组栈添加(int opCount) {
 
-        ArrayGroupStack<Integer> arrayGroupStack = new ArrayGroupStack<>();
+        ArrayChartStack<Integer> arrayChartStack = new ArrayChartStack<>();
         new TimeTest("数组栈添加", opCount) {
             @Override
             protected void run() {
-                arrayGroupStack.push(1);
+                arrayChartStack.push(1);
             }
         };
     }
 
     private static void 数组栈出栈(int opCount) {
-        ArrayGroupStack<Integer> arrayGroupStack = new ArrayGroupStack<>();
+        ArrayChartStack<Integer> arrayChartStack = new ArrayChartStack<>();
         for (int i = 0; i < opCount; i++) {
-            arrayGroupStack.push(1);
+            arrayChartStack.push(1);
         }
         new TimeTest("数组栈添加", opCount) {
             @Override
             protected void run() {
-                arrayGroupStack.pop();
+                arrayChartStack.pop();
             }
         };
     }
@@ -99,14 +99,14 @@ public class ClientOfTask {
      * 数组式集合实现的栈测试方法
      */
     private static void arrayStackTest() {
-        ArrayGroupStack<Integer> arrayGroupStack = new ArrayGroupStack<>();
+        ArrayChartStack<Integer> arrayChartStack = new ArrayChartStack<>();
         for (int i = 0; i < 5; i++) {
-            arrayGroupStack.push(i);
-            System.out.println(arrayGroupStack);
+            arrayChartStack.push(i);
+            System.out.println(arrayChartStack);
         }
-        arrayGroupStack.pop();
-        arrayGroupStack.pop();
-        Integer peek = arrayGroupStack.peek();
+        arrayChartStack.pop();
+        arrayChartStack.pop();
+        Integer peek = arrayChartStack.peek();
         System.out.println(peek);
         //Stack ：[ 0] <--top
         //Stack ：[ 0, 1] <--top

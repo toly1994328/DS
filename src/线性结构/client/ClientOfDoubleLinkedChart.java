@@ -1,6 +1,6 @@
-package client;
+package 线性结构.client;
 
-import 线性结构.链表.DoubleLinkedGroup;
+import 线性结构.链表.DoubleLinkedChart;
 
 /**
  * 作者：张风捷特烈
@@ -8,7 +8,7 @@ import 线性结构.链表.DoubleLinkedGroup;
  * 邮箱：1981462002@qq.com
  * 说明：双链表测试
  */
-public class ClientOfDoubleLinkedGroup {
+public class ClientOfDoubleLinkedChart {
     public static void main(String[] args) {
         baseTest();
 
@@ -20,7 +20,7 @@ public class ClientOfDoubleLinkedGroup {
      * 其他方法测试
      */
     private static void otherTest() {
-        DoubleLinkedGroup<String> linkedGroup = new DoubleLinkedGroup<>();
+        DoubleLinkedChart<String> linkedGroup = new DoubleLinkedChart<>();
         linkedGroup.addLast("a");
         linkedGroup.addLast("b");
         linkedGroup.addLast("a");
@@ -51,7 +51,7 @@ public class ClientOfDoubleLinkedGroup {
         //head: b->c->NULL
 
         //双链表合并测试
-        DoubleLinkedGroup<String> linkedGroup2 = new DoubleLinkedGroup<>();
+        DoubleLinkedChart<String> linkedGroup2 = new DoubleLinkedChart<>();
 
         linkedGroup2.addLast("1");
         linkedGroup2.addLast("3");
@@ -64,7 +64,7 @@ public class ClientOfDoubleLinkedGroup {
     }
 
     private static void baseTest() {
-        DoubleLinkedGroup<String> list = new DoubleLinkedGroup<>();
+        DoubleLinkedChart<String> list = new DoubleLinkedChart<>();
         //添加测试
         list.addFirst("特");
         list.addFirst("张");

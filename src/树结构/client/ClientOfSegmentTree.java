@@ -1,4 +1,4 @@
-package client;
+package 树结构.client;
 
 import 树结构.线段树.Merger;
 import 树结构.线段树.SegmentTree;

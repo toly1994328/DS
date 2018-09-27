@@ -53,8 +53,8 @@
 根据元素取索引  int[] getIndex(T el)
 
 是否包含元素    boolean contains(T el)
-尾连接两容器    Group<T> contact(Group<T> group)
-定点连接容器    Group<T> contact(int index,Group<T> group)
+尾连接两容器    Group<T> contact(Group<T> abstractChart)
+定点连接容器    Group<T> contact(int index,Group<T> abstractChart)
 是否为空        boolean isEmpty() 
 获取大小        int size()
 ```
@@ -197,21 +197,21 @@ public abstract class Group<T> {
     /**
      * 连接两个容器
      *
-     * @param group 插入容器
+     * @param abstractChart 插入容器
      * @return 合并后的容器
      */
-    public Group<T> contact(Group<T> group) {
-        return contact(size-1, group);
+    public Group<T> contact(Group<T> abstractChart) {
+        return contact(size-1, abstractChart);
     }
 
     /**
      * 定点连接两个容器
      *
      * @param index 索引
-     * @param group 插入容器
+     * @param abstractChart 插入容器
      * @return 合并后的容器
      */
-    public abstract Group<T> contact(int index, Group<T> group);
+    public abstract Group<T> contact(int index, Group<T> abstractChart);
 
     /**
      * 是否为空

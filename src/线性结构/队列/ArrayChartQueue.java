@@ -2,7 +2,7 @@ package 线性结构.队列;
 
 
 import base.IQueue;
-import 线性结构.数组.ArrayGroup;
+import 线性结构.数组.ArrayChart;
 
 /**
  * 作者：张风捷特烈
@@ -10,19 +10,19 @@ import 线性结构.数组.ArrayGroup;
  * 邮箱：1981462002@qq.com
  * 说明：队列的数组实现
  */
-public class ArrayGroupQueue<E> implements IQueue<E> {
+public class ArrayChartQueue<E> implements IQueue<E> {
 
     /**
      * 成员变量
      */
-    private ArrayGroup<E> array;
+    private ArrayChart<E> array;
 
-    public ArrayGroupQueue(int capacity) {
-        this.array = new ArrayGroup<>(capacity);
+    public ArrayChartQueue(int capacity) {
+        this.array = new ArrayChart<>(capacity);
     }
 
-    public ArrayGroupQueue() {
-        this.array = new ArrayGroup<>();
+    public ArrayChartQueue() {
+        this.array = new ArrayChart<>();
     }
 
     @Override

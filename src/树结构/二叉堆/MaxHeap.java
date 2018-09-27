@@ -1,6 +1,6 @@
 package 树结构.二叉堆;
 
-import 线性结构.数组.ArrayGroup;
+import 线性结构.数组.ArrayChart;
 
 /**
  * 作者：张风捷特烈
@@ -10,15 +10,15 @@ import 线性结构.数组.ArrayGroup;
  */
 public class MaxHeap<T extends Comparable<T>> {
 
-    private ArrayGroup<T> data;
+    private ArrayChart<T> data;
 
 
     public MaxHeap() {
-        data = new ArrayGroup<>();
+        data = new ArrayChart<>();
     }
 
     public MaxHeap(int capacity) {
-        data = new ArrayGroup<>(capacity);
+        data = new ArrayChart<>(capacity);
     }
 
     /**
@@ -27,7 +27,7 @@ public class MaxHeap<T extends Comparable<T>> {
      * @param arr 数组
      */
     public MaxHeap(T[] arr) {
-        data = new ArrayGroup<>(arr);
+        data = new ArrayChart<>(arr);
         for (int i = fatherIndex(arr.length - 1); i >= 0; i--)
             siftDown(i);
     }

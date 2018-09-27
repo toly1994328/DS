@@ -1,6 +1,7 @@
 package 线性结构.链表;
 
-import base.Group;
+import base.AbstractChart;
+import base.IChart;
 
 /**
  * 作者：张风捷特烈
@@ -8,7 +9,7 @@ import base.Group;
  * 邮箱：1981462002@qq.com
  * 说明：
  */
-public class DoubleLinkedGroup<T> extends Group<T> {
+public class DoubleLinkedChart<T> extends AbstractChart<T> {
 
     /**
      * 虚拟头结点
@@ -20,7 +21,7 @@ public class DoubleLinkedGroup<T> extends Group<T> {
      */
     private Node tailNode;
 
-    public DoubleLinkedGroup() {
+    public DoubleLinkedChart() {
         clear();
     }
 
@@ -94,12 +95,12 @@ public class DoubleLinkedGroup<T> extends Group<T> {
     }
 
     @Override
-    public Group<T> contact(int index, Group<T> group) {
+    public IChart<T> contact(int index, IChart<T> iChart) {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Contact failed. Illegal index");
         }
 
-        DoubleLinkedGroup linkedGroup = (DoubleLinkedGroup) group;
+        DoubleLinkedChart linkedGroup = (DoubleLinkedChart) iChart;
         Node targetNode = getNode(index);
         Node targetNextNode = targetNode.next;
 

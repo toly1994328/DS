@@ -1,7 +1,7 @@
 package 线性结构.栈.use;
 
 
-import 线性结构.数组.ArrayGroup;
+import 线性结构.数组.ArrayChart;
 
 import java.util.Stack;
 
@@ -18,9 +18,9 @@ public class DoubleJudge {
         String[] leftChars = new String[]{"(", "{", "["};
         String[] rightChars = new String[]{")", "}", "]"};
         //左侧字符
-        ArrayGroup<String> leftArr = new ArrayGroup<>(leftChars);
+        ArrayChart<String> leftArr = new ArrayChart<>(leftChars);
         //右侧字符
-        ArrayGroup<String> rightArr = new ArrayGroup<>(rightChars);
+        ArrayChart<String> rightArr = new ArrayChart<>(rightChars);
 
         for (int i = 0; i < s.length(); i++) {
             char c = s.charAt(i); // String中的第i个字符

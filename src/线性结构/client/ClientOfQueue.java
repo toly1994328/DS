@@ -1,7 +1,7 @@
-package client;
+package 线性结构.client;
 
 import Jutils.TimeTest;
-import 线性结构.队列.ArrayGroupQueue;
+import 线性结构.队列.ArrayChartQueue;
 import 线性结构.队列.ArrayLoopQueue;
 import 线性结构.队列.SingleLinkedQueue;
 
@@ -31,16 +31,16 @@ public class ClientOfQueue {
 
     /////////////////////////////性能测试S//////////////////////////
     private static void 数组普通队列出队测试(int opCount) {
-        ArrayGroupQueue<Integer> arrayGroupQueue = new ArrayGroupQueue<>();
+        ArrayChartQueue<Integer> arrayChartQueue = new ArrayChartQueue<>();
 
         for (int i = 0; i < opCount; i++) {
-            arrayGroupQueue.enqueue(1);
+            arrayChartQueue.enqueue(1);
         }
 
         new TimeTest("arrayGroupQueue出队", opCount) {
             @Override
             protected void run() {
-                arrayGroupQueue.dequeue();
+                arrayChartQueue.dequeue();
             }
         };
     }
@@ -74,11 +74,11 @@ public class ClientOfQueue {
     }
 
     private static void 数组普通队列入队测试(int opCount) {
-        ArrayGroupQueue<Integer> arrayGroupQueue = new ArrayGroupQueue<>();
+        ArrayChartQueue<Integer> arrayChartQueue = new ArrayChartQueue<>();
         new TimeTest("arrayGroupQueue入队", opCount) {
             @Override
             protected void run() {
-                arrayGroupQueue.enqueue(1);
+                arrayChartQueue.enqueue(1);
             }
         };
     }
@@ -150,7 +150,7 @@ public class ClientOfQueue {
      * 数组队列测试
      */
     private static void arrayQueueTest() {
-        ArrayGroupQueue<Integer> queue = new ArrayGroupQueue<>();
+        ArrayChartQueue<Integer> queue = new ArrayChartQueue<>();
         for (int i = 0; i < 5; i++) {
             queue.enqueue(i);
             System.out.println(queue);
